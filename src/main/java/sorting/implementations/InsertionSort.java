@@ -1,8 +1,15 @@
-package sorting;
+package sorting.implementations;
+
+import sorting.ListSortingAlgorithm;
 
 import java.util.List;
 
 public class InsertionSort<T extends Comparable<? super T>> implements ListSortingAlgorithm<T> {
+
+    @Override
+    public String getName() {
+        return "Insertion Sort";
+    }
 
     @Override
     public List<T> sort(List<T> list) {

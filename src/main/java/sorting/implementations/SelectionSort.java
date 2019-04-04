@@ -1,9 +1,16 @@
-package sorting;
+package sorting.implementations;
+
+import sorting.ListSortingAlgorithm;
 
 import java.util.Collections;
 import java.util.List;
 
 public class SelectionSort<T extends Comparable<? super T>> implements ListSortingAlgorithm<T> {
+
+    @Override
+    public String getName() {
+        return "Selection Sort";
+    }
 
     @Override
     public List<T> sort(List<T> list) {
