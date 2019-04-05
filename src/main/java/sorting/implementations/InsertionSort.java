@@ -7,11 +7,6 @@ import java.util.List;
 public class InsertionSort<T extends Comparable<? super T>> implements ListSortingAlgorithm<T> {
 
     @Override
-    public String getName() {
-        return "Insertion Sort";
-    }
-
-    @Override
     public List<T> sort(List<T> list) {
         for (int i = 1; i < list.size(); i++) {
             int pos = i;

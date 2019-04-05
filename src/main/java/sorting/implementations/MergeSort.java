@@ -8,11 +8,6 @@ import java.util.List;
 public class MergeSort<T extends Comparable<? super T>> implements ListSortingAlgorithm<T> {
 
     @Override
-    public String getName() {
-        return "Merge Sort";
-    }
-
-    @Override
     public List<T> sort(List<T> list) {
         list = new ArrayList<>(list);
 

@@ -23,14 +23,14 @@ public class ListSortingBenchmark {
             long startTime = System.currentTimeMillis();
             algo.sort(new ArrayList<>(LIST_TO_SORT));
 
-            System.out.format("%20s %20s", algo.getName(), (System.currentTimeMillis() - startTime));
+            System.out.format("%20s %20s", algo.getClass().getSimpleName(), (System.currentTimeMillis() - startTime));
             System.out.println();
         }
 
         long startTime = System.currentTimeMillis();
         Collections.sort(new ArrayList<>(LIST_TO_SORT));
 
-        System.out.format("%20s %20s", "Collections Sort", (System.currentTimeMillis() - startTime));
+        System.out.format("%20s %20s", "Collections.sort", (System.currentTimeMillis() - startTime));
         System.out.println();
     }
 

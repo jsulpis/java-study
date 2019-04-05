@@ -44,36 +44,18 @@ public class ListSortingAlgorithmTest {
     }
 
     private void listWithOneElementShouldRemainUnchanged(ListSortingAlgorithm<Integer> algo) {
-        // Given
         List<Integer> list = Collections.singletonList(0);
-
-        // When
-        List<Integer> actualSortedList = algo.sort(list);
-
-        // Then
-        assertEquals(list, actualSortedList);
+        assertEquals(list, algo.sort(list));
     }
 
     private void sortedListShouldRemainUnchanged(ListSortingAlgorithm<Integer> algo) {
-        // Given
         List<Integer> list = new ArrayList<>(Arrays.asList(2, 3, 4, 5, 6));
-
-        // When
-        List<Integer> actualSortedList = algo.sort(list);
-
-        // Then
-        assertEquals(list, actualSortedList);
+        assertEquals(list, algo.sort(list));
     }
 
     private void unsortedListWithMoreThanOneElementsShouldBeSorted(ListSortingAlgorithm<Integer> algo) {
-        // Given
         List<Integer> list = new ArrayList<>(Arrays.asList(9, 5, 1, 7, 6, 2));
         List<Integer> sortedList = Arrays.asList(1, 2, 5, 6, 7, 9);
-
-        // When
-        List<Integer> actualSortedList = algo.sort(list);
-
-        // Then
-        assertEquals(sortedList, actualSortedList);
+        assertEquals(sortedList, algo.sort(list));
     }
 }

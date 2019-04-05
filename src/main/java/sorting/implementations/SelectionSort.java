@@ -8,11 +8,6 @@ import java.util.List;
 public class SelectionSort<T extends Comparable<? super T>> implements ListSortingAlgorithm<T> {
 
     @Override
-    public String getName() {
-        return "Selection Sort";
-    }
-
-    @Override
     public List<T> sort(List<T> list) {
         int n = list.size();
         for (int i = 0; i < n - 1; i++) {

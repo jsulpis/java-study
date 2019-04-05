@@ -9,11 +9,6 @@ import static java.util.Collections.swap;
 public class QuickSort<T extends Comparable<? super T>> implements ListSortingAlgorithm<T> {
 
     @Override
-    public String getName() {
-        return "Quick Sort";
-    }
-
-    @Override
     public List<T> sort(List<T> list) {
         quickSort(list, 0, list.size() - 1);
         return list;

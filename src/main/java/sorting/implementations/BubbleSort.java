@@ -9,11 +9,6 @@ import static java.util.Collections.swap;
 public class BubbleSort<T extends Comparable<? super T>> implements ListSortingAlgorithm<T> {
 
     @Override
-    public String getName() {
-        return "Bubble Sort";
-    }
-
-    @Override
     public List<T> sort(List<T> list) {
         int n = list.size();
         for (int i = 1; i < n; i++) {
