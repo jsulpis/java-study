@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
 
 public class FileReaderTest {
 
-    private static final String WORK_DIR = "C:\\Users\\jsulpis\\Desktop\\java-study\\tmp";// System.getProperty("java.io.tmpdir");
+    private static final String WORK_DIR = System.getProperty("java.io.tmpdir");
     private static final String FILE_NAME = "test.txt";
     private static final String FILE_PATH = WORK_DIR + "\\" + FILE_NAME;
     private static final String FILE_CONTENT = RandomStringUtils.randomAlphanumeric(100);

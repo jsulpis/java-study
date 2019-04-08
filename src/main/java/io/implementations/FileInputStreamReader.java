@@ -9,6 +9,7 @@ import java.io.IOException;
 
 public class FileInputStreamReader implements FileReader {
 
+    private static final int BUF_SIZE = 8;
     private FileInputStream fis;
 
     public FileInputStreamReader(String filePath) throws FileNotFoundException {
@@ -19,10 +20,13 @@ public class FileInputStreamReader implements FileReader {
     public String read() throws IOException {
         StringBuilder sb = new StringBuilder();
         int c;
-        while ((c = fis.read()) != -1) {
-            sb.append((char) c);
+        byte[] buf = new byte[BUF_SIZE];
+        while (fis.read(buf) >= 0) {
+            for (byte b : buf)
+                sb.append((char) b);
+            buf = new byte[BUF_SIZE];
         }
-        return sb.toString();
+        return sb.toString().trim();
     }
 
     @Override
