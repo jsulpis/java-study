@@ -1,4 +1,4 @@
-package sorting.implementations;
+package sorting.impl;
 
 import sorting.ListSortingAlgorithm;
 

@@ -1,7 +1,7 @@
 package sorting;
 
 import org.junit.Test;
-import sorting.implementations.*;
+import sorting.impl.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,6 +1,6 @@
 package sorting;
 
-import sorting.implementations.*;
+import sorting.impl.*;
 
 import java.util.*;
 import java.util.stream.Collectors;
