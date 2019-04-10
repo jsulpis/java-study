@@ -13,20 +13,16 @@ import java.util.List;
  */
 public class FileChannelReader extends TextFileReader {
 
-    public FileChannelReader(String filePath) {
-        super(filePath);
-    }
-
     @Override
-    public List<String> read() throws IOException {
+    public List<String> read(String filePath) throws IOException {
         StringBuilder sb = new StringBuilder();
         try (FileChannel fc = FileChannel.open(Paths.get(filePath))) {
-            readFileWithByteBuffer(sb, fc);
+            readStreamWithByteBuffer(sb, fc);
         }
         return convertStringBuilderToListOfStrings(sb);
     }
 
-    private void readFileWithByteBuffer(StringBuilder sb, FileChannel fc) throws IOException {
+    private void readStreamWithByteBuffer(StringBuilder sb, FileChannel fc) throws IOException {
         ByteBuffer buf = ByteBuffer.allocate(BUF_SIZE);
         while (fc.read(buf) != -1) {
             for (byte b : buf.array())

@@ -17,7 +17,7 @@ public class FileIOBenchmark {
 
     public static void main(String[] args) throws IOException {
         writeTestFile();
-        List<TextFileReader> algorithms = Arrays.asList(new FileInputStreamReader(FILE_PATH), new BufferedInputStreamReader(FILE_PATH), new FilesReader(FILE_PATH), new FileReader(FILE_PATH), new FilesStreamReader(FILE_PATH), new FileChannelReader(FILE_PATH));
+        List<TextFileReader> algorithms = Arrays.asList(new FileInputStreamReader(), new BufferedInputStreamReader(), new FilesReader(), new FileReader(), new FilesStreamReader(), new FileChannelReader());
 
         runBenchmark(algorithms);
     }
@@ -28,12 +28,12 @@ public class FileIOBenchmark {
         writer.close();
     }
 
-    private static void runBenchmark(List<TextFileReader> algorithms) throws IOException {
+    private static void runBenchmark(List<TextFileReader> fileReaders) throws IOException {
         printHeader();
-        for (TextFileReader reader : algorithms) {
+        for (TextFileReader fileReader : fileReaders) {
             long startTime = System.currentTimeMillis();
-            reader.read();
-            System.out.format("%25s %17s", reader.getClass().getSimpleName(), (System.currentTimeMillis() - startTime));
+            fileReader.read(FILE_PATH);
+            System.out.format("%25s %17s", fileReader.getClass().getSimpleName(), (System.currentTimeMillis() - startTime));
             System.out.println();
         }
     }

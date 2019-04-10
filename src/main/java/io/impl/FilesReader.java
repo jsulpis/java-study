@@ -14,12 +14,8 @@ import java.util.List;
  */
 public class FilesReader extends TextFileReader {
 
-    public FilesReader(String filePath) {
-        super(filePath);
-    }
-
     @Override
-    public List<String> read() throws IOException {
+    public List<String> read(String filePath) throws IOException {
         return Files.readAllLines(Paths.get(filePath));
     }
 }

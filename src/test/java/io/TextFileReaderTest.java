@@ -33,36 +33,36 @@ public class TextFileReaderTest {
 
     @Test
     public void fisReaderTest() throws IOException {
-        testFileReader(new FileInputStreamReader(FILE_PATH));
+        testFileReader(new FileInputStreamReader());
     }
 
     @Test
     public void bisReaderTest() throws IOException {
-        testFileReader(new BufferedInputStreamReader(FILE_PATH));
+        testFileReader(new BufferedInputStreamReader());
     }
 
     @Test
     public void fileReaderTest() throws IOException {
-        testFileReader(new FileReader(FILE_PATH));
+        testFileReader(new FileReader());
     }
 
     @Test
     public void filesReaderTest() throws IOException {
-        testFileReader(new FilesReader(FILE_PATH));
+        testFileReader(new FilesReader());
     }
 
     @Test
     public void filesStreamReaderTest() throws IOException {
-        testFileReader(new FilesStreamReader(FILE_PATH));
+        testFileReader(new FilesStreamReader());
     }
 
     @Test
     public void fileChannelReaderTest() throws IOException {
-        testFileReader(new FileChannelReader(FILE_PATH));
+        testFileReader(new FileChannelReader());
     }
 
     private void testFileReader(TextFileReader fileReader) throws IOException {
-        assertEquals(FILE_CONTENT, fileReader.read());
+        assertEquals(FILE_CONTENT, fileReader.read(FILE_PATH));
     }
 
     @After

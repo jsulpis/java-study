@@ -13,20 +13,16 @@ import java.util.List;
  */
 public class FileReader extends TextFileReader {
 
-    public FileReader(String filePath) {
-        super(filePath);
-    }
-
     @Override
-    public List<String> read() throws IOException {
+    public List<String> read(String filePath) throws IOException {
         StringBuilder sb = new StringBuilder();
         try (java.io.FileReader fr = new java.io.FileReader(filePath)) {
-            readFileWithCharArray(sb, fr);
+            readStreamWithCharArray(sb, fr);
         }
         return convertStringBuilderToListOfStrings(sb);
     }
 
-    private void readFileWithCharArray(StringBuilder sb, java.io.FileReader fr) throws IOException {
+    private void readStreamWithCharArray(StringBuilder sb, java.io.FileReader fr) throws IOException {
         char[] buf = new char[BUF_SIZE];
         while (fr.read(buf) != -1) {
             for (char c : buf)

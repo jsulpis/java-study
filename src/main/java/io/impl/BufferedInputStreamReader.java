@@ -14,15 +14,11 @@ import java.util.List;
  */
 public class BufferedInputStreamReader extends TextFileReader {
 
-    public BufferedInputStreamReader(String filePath) {
-        super(filePath);
-    }
-
     @Override
-    public List<String> read() throws IOException {
+    public List<String> read(String filePath) throws IOException {
         StringBuilder sb = new StringBuilder();
         try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(filePath))) {
-            readFileWithByteArray(sb, bis);
+            readStreamWithByteArray(sb, bis);
         }
         return convertStringBuilderToListOfStrings(sb);
     }

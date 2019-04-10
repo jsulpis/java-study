@@ -11,11 +11,6 @@ import java.util.List;
 public abstract class TextFileReader {
 
     protected static final int BUF_SIZE = 8192;
-    protected final String filePath;
-
-    public TextFileReader(String filePath) {
-        this.filePath = filePath;
-    }
 
     /**
      * Reads all the lines of the text file whose name has been given in the constructor.
@@ -23,9 +18,9 @@ public abstract class TextFileReader {
      * @return a liste of Strings, each containing a line of the file.
      * @throws IOException if any I/O error occurs.
      */
-    public abstract List<String> read() throws IOException;
+    public abstract List<String> read(String filePath) throws IOException;
 
-    protected void readFileWithByteArray(StringBuilder sb, InputStream is) throws IOException {
+    protected void readStreamWithByteArray(StringBuilder sb, InputStream is) throws IOException {
         byte[] buf = new byte[BUF_SIZE];
         while (is.read(buf) != -1) {
             for (byte b : buf)
