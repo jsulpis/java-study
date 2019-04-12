@@ -1,4 +1,4 @@
-package sorting;
+package unit.sorting;
 
 import org.junit.Before;
 import sorting.impl.BubbleSort;

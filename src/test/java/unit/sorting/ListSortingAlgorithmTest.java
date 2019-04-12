@@ -1,6 +1,7 @@
-package sorting;
+package unit.sorting;
 
 import org.junit.Test;
+import sorting.ListSortingAlgorithm;
 
 import java.util.ArrayList;
 import java.util.Arrays;

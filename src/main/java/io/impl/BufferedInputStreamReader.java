@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Wrapper for the BufferedInputStream class in java.io.
+ * Wrapper for the BufferedInputStream class in java.unit.io.
  * <p>
  * This class improves the performance of another input stream (in this case a FileInputStream) by using a buffer array.
  */
