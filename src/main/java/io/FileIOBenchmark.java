@@ -2,6 +2,8 @@ package io;
 
 import io.impl.*;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,6 +11,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class FileIOBenchmark {
+
+    private static final Logger LOG = LoggerFactory.getLogger(FileIOBenchmark.class);
     private static final File WORK_DIR = new File("tmp");
     private static final String FILE_NAME = "test.txt";
     private static final int FILE_SIZE = 5000000;
@@ -33,17 +37,20 @@ public class FileIOBenchmark {
         for (TextFileReader fileReader : fileReaders) {
             long startTime = System.currentTimeMillis();
             fileReader.read(TEST_FILE.getPath());
-            System.out.format("%25s %17s", fileReader.getClass().getSimpleName(), (System.currentTimeMillis() - startTime));
-            System.out.println();
+            formatAndLogString("%25s %17s", fileReader.getClass().getSimpleName(), (System.currentTimeMillis() - startTime));
         }
     }
 
     private static void printHeader() {
-        System.out.println(String.format("Lecture d'un fichier de %d elements", FILE_SIZE));
+        LOG.info("Running the benchmark on a file of {} characters.", FILE_SIZE);
 
-        System.out.println("--------------------------------------------------");
-        System.out.printf("%20s %25s", "ALGO", "TIME(ms)");
-        System.out.println();
-        System.out.println("--------------------------------------------------");
+        LOG.info("--------------------------------------------------");
+        formatAndLogString("%20s %25s", "ALGO", "TIME(ms)");
+        LOG.info("--------------------------------------------------");
+    }
+
+    private static void formatAndLogString(String rawString, Object... params) {
+        String formattedString = String.format(rawString, params);
+        LOG.info(formattedString);
     }
 }

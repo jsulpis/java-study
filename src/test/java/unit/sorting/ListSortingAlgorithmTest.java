@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 
 public abstract class ListSortingAlgorithmTest {
 
-    ListSortingAlgorithm<Integer> algo;
+    protected ListSortingAlgorithm<Integer> algo;
 
     @Test
     public void listWithOneElementShouldRemainUnchanged() {
