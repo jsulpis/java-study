@@ -14,7 +14,8 @@ import java.nio.file.NoSuchFileException;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.fail;
 
 public abstract class TextFileReaderTest {
 
@@ -33,11 +34,6 @@ public abstract class TextFileReaderTest {
     }
 
     @Test
-    public void checkTestFile() {
-        assertTrue(TEST_FILE.exists());
-    }
-
-    @Test
     public void shouldThrowExceptionWhenFileIncorrect() {
         try {
             fileReader.read("wrongFileName");
@@ -51,7 +47,7 @@ public abstract class TextFileReaderTest {
 
     @Test
     public void shouldReturnCorrectContent() throws IOException {
-        assertEquals(FILE_CONTENT, fileReader.read(TEST_FILE.getPath()));
+        assertThat(fileReader.read(TEST_FILE.getPath())).isEqualTo(FILE_CONTENT);
     }
 
     @After

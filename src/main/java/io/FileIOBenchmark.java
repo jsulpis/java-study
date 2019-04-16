@@ -7,13 +7,14 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
 
 public class FileIOBenchmark {
 
     private static final Logger LOG = LoggerFactory.getLogger(FileIOBenchmark.class);
-    private static final File WORK_DIR = new File("tmp");
+    public static final File WORK_DIR = new File("tmp");
     private static final String FILE_NAME = "test.txt";
     private static final int FILE_SIZE = 5000000;
 
@@ -26,6 +27,12 @@ public class FileIOBenchmark {
         List<TextFileReader> algorithms = Arrays.asList(new FileInputStreamReader(), new BufferedInputStreamReader(), new FilesReader(), new FileReader(), new FilesStreamReader(), new FileChannelReader());
 
         runBenchmark(algorithms);
+        cleanWorkDir();
+    }
+
+    private static void cleanWorkDir() throws IOException {
+        Files.delete(TEST_FILE.toPath());
+        Files.delete(WORK_DIR.toPath());
     }
 
     private static void writeTestFile() throws IOException {

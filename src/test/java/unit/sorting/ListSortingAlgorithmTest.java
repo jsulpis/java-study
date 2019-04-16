@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public abstract class ListSortingAlgorithmTest {
 
@@ -17,19 +17,19 @@ public abstract class ListSortingAlgorithmTest {
     @Test
     public void listWithOneElementShouldRemainUnchanged() {
         List<Integer> list = Collections.singletonList(0);
-        assertEquals(list, algo.sort(list));
+        assertThat(algo.sort(list)).isEqualTo(list);
     }
 
     @Test
     public void sortedListShouldRemainUnchanged() {
         List<Integer> list = new ArrayList<>(Arrays.asList(2, 3, 4, 5, 6));
-        assertEquals(list, algo.sort(list));
+        assertThat(algo.sort(list)).isEqualTo(list);
     }
 
     @Test
     public void unsortedListWithMoreThanOneElementShouldBeSorted() {
         List<Integer> list = new ArrayList<>(Arrays.asList(9, 5, 1, 7, 6, 2));
         List<Integer> sortedList = Arrays.asList(1, 2, 5, 6, 7, 9);
-        assertEquals(sortedList, algo.sort(list));
+        assertThat(algo.sort(list)).isEqualTo(sortedList);
     }
 }
