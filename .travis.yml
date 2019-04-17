@@ -1,0 +1,13 @@
+language: java
+
+before_install:
+  - chmod +x ./gradlew
+
+addons:
+  sonarcloud:
+    organization: "jsulpis-github"
+    token: $SONAR_TOKEN
+
+script:
+  - ./gradlew test
+  - sonar-scanner

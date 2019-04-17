@@ -1,45 +1,47 @@
 package sorting;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import sorting.impl.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public class ListSortingBenchmark {
-    public static void main(String[] args) {
-        List<ListSortingAlgorithm<Integer>> algorithms = Arrays.asList(new BubbleSort<>(), new InsertionSort<>(), new MergeSort<>(), new QuickSort<>(), new SelectionSort<>());
 
-        int numberOfElements = 10000;
-        runBenchmark(algorithms, numberOfElements);
+    private static final Logger LOG = LoggerFactory.getLogger(ListSortingBenchmark.class);
+    private static final int LIST_SIZE = 10;
+
+    public static void main(String[] args) {
+        printHeader();
+        runBenchmarkAndLogResult();
     }
 
-    private static void runBenchmark(List<ListSortingAlgorithm<Integer>> algorithms, int numberOfElements) {
-        printHeader(numberOfElements);
-
-        List<Integer> LIST_TO_SORT = new Random().ints(numberOfElements).boxed().collect(Collectors.toList());
+    private static void runBenchmarkAndLogResult() {
+        List<Integer> listToSort = new Random().ints(LIST_SIZE).boxed().collect(Collectors.toList());
+        List<ListSortingAlgorithm<Integer>> algorithms = Arrays.asList(new BubbleSort<>(), new InsertionSort<>(), new MergeSort<>(), new QuickSort<>(), new SelectionSort<>(), new CollectionsSort<>());
 
         for (ListSortingAlgorithm<Integer> algo : algorithms) {
-
             long startTime = System.currentTimeMillis();
-            algo.sort(new ArrayList<>(LIST_TO_SORT));
-
-            System.out.format("%20s %20s", algo.getClass().getSimpleName(), (System.currentTimeMillis() - startTime));
-            System.out.println();
+            algo.sort(new ArrayList<>(listToSort));
+            formatAndLogString("%20s %15s", algo.getClass().getSimpleName(), (System.currentTimeMillis() - startTime));
         }
-
-        long startTime = System.currentTimeMillis();
-        Collections.sort(new ArrayList<>(LIST_TO_SORT));
-
-        System.out.format("%20s %20s", "Collections.sort", (System.currentTimeMillis() - startTime));
-        System.out.println();
     }
 
-    private static void printHeader(int numberOfElements) {
-        System.out.println(numberOfElements + " elements to sort.");
+    private static void printHeader() {
+        LOG.info("### Benchmark of the speed of various sorting algorithms ###");
+        LOG.info("Running the benchmark on a list of {} elements.", LIST_SIZE);
+        LOG.info("");
+        LOG.info("-----------------------------------------------");
+        formatAndLogString("%18s %20s", "ALGO", "TIME(ms)");
+        LOG.info("-----------------------------------------------");
+    }
 
-        System.out.println("-----------------------------------------------");
-        System.out.printf("%20s %20s", "ALGO", "TIME(ms)");
-        System.out.println();
-        System.out.println("-----------------------------------------------");
+    private static void formatAndLogString(String rawString, Object... params) {
+        String formattedString = String.format(rawString, params);
+        LOG.info(formattedString);
     }
 }

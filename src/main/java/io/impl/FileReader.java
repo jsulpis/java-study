@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Wrapper for the FileReader class in java.io.
+ * Wrapper for the FileReader class in java.unit.io.
  * <p>
  * This class itself extends the InputStreamReader class. It uses a FileInputStream and a StreamDecoder
  * to convert the bytes into characters.

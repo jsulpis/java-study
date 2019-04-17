@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Wrapper for the FileInputStream class in java.io.
+ * Wrapper for the FileInputStream class in java.unit.io.
  * <p>
  * This class provides a basic way of reading streams of raw bytes.
  */

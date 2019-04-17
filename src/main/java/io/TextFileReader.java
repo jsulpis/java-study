@@ -13,9 +13,9 @@ public abstract class TextFileReader {
     protected static final int BUF_SIZE = 8192;
 
     /**
-     * Reads all the lines of the text file whose name has been given in the constructor.
+     * Reads all the lines of the text file.
      *
-     * @return a liste of Strings, each containing a line of the file.
+     * @return a list of Strings, each containing a line of the file.
      * @throws IOException if any I/O error occurs.
      */
     public abstract List<String> read(String filePath) throws IOException;

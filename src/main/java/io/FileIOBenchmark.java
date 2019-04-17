@@ -2,48 +2,62 @@ package io;
 
 import io.impl.*;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.io.FileWriter;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
 
 public class FileIOBenchmark {
-    private static final String WORK_DIR = System.getProperty("java.io.tmpdir");
+
+    private static final Logger LOG = LoggerFactory.getLogger(FileIOBenchmark.class);
+    public static final File WORK_DIR = new File("tmp");
     private static final String FILE_NAME = "test.txt";
-    private static final String FILE_PATH = WORK_DIR + "\\" + FILE_NAME;
-    private static final int FILE_SIZE = 50000000;
-    private static final String FILE_CONTENT = RandomStringUtils.randomAlphanumeric(FILE_SIZE);
+    private static final int FILE_SIZE = 10;
+
+    private static final File TEST_FILE = new File(WORK_DIR, FILE_NAME);
 
     public static void main(String[] args) throws IOException {
         writeTestFile();
-        List<TextFileReader> algorithms = Arrays.asList(new FileInputStreamReader(), new BufferedInputStreamReader(), new FilesReader(), new FileReader(), new FilesStreamReader(), new FileChannelReader());
-
-        runBenchmark(algorithms);
+        printHeader();
+        runBenchmarkAndLogResult();
+        cleanWorkDir();
     }
 
     private static void writeTestFile() throws IOException {
-        FileWriter writer = new FileWriter(FILE_PATH);
-        writer.write(FILE_CONTENT);
-        writer.close();
-    }
-
-    private static void runBenchmark(List<TextFileReader> fileReaders) throws IOException {
-        printHeader();
-        for (TextFileReader fileReader : fileReaders) {
-            long startTime = System.currentTimeMillis();
-            fileReader.read(FILE_PATH);
-            System.out.format("%25s %17s", fileReader.getClass().getSimpleName(), (System.currentTimeMillis() - startTime));
-            System.out.println();
-        }
+        List<String> fileContent = Arrays.asList(RandomStringUtils.randomAlphanumeric(FILE_SIZE / 2), RandomStringUtils.randomAlphanumeric(FILE_SIZE / 2));
+        new TextFileWriter().write(TEST_FILE, fileContent);
     }
 
     private static void printHeader() {
-        System.out.println(String.format("Lecture d'un fichier de %d elements", FILE_SIZE));
+        LOG.info("### Benchmark of the reading speed of various java objects ###");
+        LOG.info("Running the benchmark on a file of {} characters.", FILE_SIZE);
+        LOG.info("");
+        LOG.info("--------------------------------------------------");
+        formatAndLogString("%20s %25s", "ALGO", "TIME(ms)");
+        LOG.info("--------------------------------------------------");
+    }
 
-        System.out.println("--------------------------------------------------");
-        System.out.printf("%20s %25s", "ALGO", "TIME(ms)");
-        System.out.println();
-        System.out.println("--------------------------------------------------");
+    private static void runBenchmarkAndLogResult() throws IOException {
+        List<TextFileReader> fileReaders = Arrays.asList(new FileInputStreamReader(), new BufferedInputStreamReader(), new FilesReader(), new FileReader(), new FilesStreamReader(), new FileChannelReader());
+
+        for (TextFileReader fileReader : fileReaders) {
+            long startTime = System.currentTimeMillis();
+            fileReader.read(TEST_FILE.getPath());
+            formatAndLogString("%25s %17s", fileReader.getClass().getSimpleName(), (System.currentTimeMillis() - startTime));
+        }
+    }
+
+    private static void cleanWorkDir() throws IOException {
+        Files.delete(TEST_FILE.toPath());
+        Files.delete(WORK_DIR.toPath());
+    }
+
+    private static void formatAndLogString(String rawString, Object... params) {
+        String formattedString = String.format(rawString, params);
+        LOG.info(formattedString);
     }
 }
