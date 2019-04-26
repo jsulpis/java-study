@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn">
+    <Properties>
+        <Property name="basePath">./src/test/resources</Property>
+    </Properties>
+
+    <Appenders>
+        <RollingFile name="fileLogger" fileName="${basePath}/app-test.log"
+                     filePattern="${basePath}/app-test-%d{yyyy-MM-dd}.log">
+            <PatternLayout>
+                <pattern>[%-5level] - %msg%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingFile>
+
+    </Appenders>
+    <Loggers>
+        <Root level="debug" additivity="false">
+            <appender-ref ref="fileLogger"/>
+        </Root>
+    </Loggers>
+</Configuration>
