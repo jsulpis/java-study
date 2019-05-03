@@ -41,4 +41,10 @@ public class DependencyInjectionAppTest {
         AnnotatedController controller = (AnnotatedController) context.getBean("annotatedController");
         assertThat(controller.getValueFromBean()).isEqualTo("Bean with AbstractBeanImpl");
     }
+
+    @Test
+    public void controllerShouldReadApplicationProperties() {
+        AnnotatedController controller = (AnnotatedController) context.getBean("annotatedController");
+        assertThat(controller.getProperty()).isEqualTo("configValue");
+    }
 }
