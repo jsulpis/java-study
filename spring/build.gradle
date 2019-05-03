@@ -4,6 +4,10 @@ plugins {
 
 apply plugin: 'io.spring.dependency-management'
 
+springBoot {
+    mainClassName = "rest.application"
+}
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
