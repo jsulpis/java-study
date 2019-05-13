@@ -10,4 +10,4 @@ addons:
 
 script:
   - ./gradlew jacocoTestReport
-  - sonar-scanner
+  - ./gradlew sonarqube
