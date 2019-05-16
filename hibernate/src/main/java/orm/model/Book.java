@@ -1,4 +1,4 @@
-package orm;
+package orm.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,16 +8,15 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table
 @NoArgsConstructor
 @Data
 public class Book {
     private long id;
     private String title;
-    private String author;
+    private Author author;
     private Date releaseDate;
 
-    public Book(String title, String author, Date releaseDate) {
+    public Book(String title, Author author, Date releaseDate) {
         this.title = title;
         this.author = author;
         this.releaseDate = releaseDate;
@@ -28,6 +27,11 @@ public class Book {
     @GenericGenerator(name = "increment", strategy = "increment")
     public long getId() {
         return id;
+    }
+
+    @ManyToOne
+    public Author getAuthor() {
+        return author;
     }
 
     @Temporal(TemporalType.DATE)
