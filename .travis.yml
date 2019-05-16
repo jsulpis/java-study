@@ -9,5 +9,5 @@ addons:
     token: $SONAR_TOKEN
 
 script:
-  - ./gradlew jacocoTestReport
+  - ./gradlew jacocoTestReport --stacktrace
   - ./gradlew sonarqube
