@@ -1,4 +1,4 @@
-package cucumber;
+package behaviour;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;

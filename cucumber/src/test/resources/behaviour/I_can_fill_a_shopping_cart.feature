@@ -18,8 +18,8 @@ Feature: I can fill a shopping cart
     Given an empty shopping cart
     And a list of products:
       | name  | lamp | laptop | keyboard |
-      | price | 40   | 900    | 60       |
+      | price | 40.0 | 900.0  | 60.0     |
     When I add all the products to the shopping cart
     Then the shopping cart contains all the products
     And the total number of products is 3
-    And the total amount is the 1000
+    And the total amount is 1000.0

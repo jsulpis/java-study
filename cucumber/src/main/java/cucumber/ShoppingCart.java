@@ -1,6 +1,7 @@
 package cucumber;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class ShoppingCart {
@@ -24,5 +25,9 @@ public class ShoppingCart {
 
     public float getTotal() {
         return products.stream().map(Product::getPrice).reduce(0F, (a, b) -> a + b);
+    }
+
+    public void addAll(List<Product> products) {
+        this.products.addAll(products);
     }
 }
