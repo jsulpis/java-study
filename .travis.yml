@@ -7,6 +7,10 @@ addons:
   sonarcloud:
     organization: "jsulpis-github"
     token: $SONAR_TOKEN
+    
+branches:
+  only:
+    - master
 
 script:
   - ./gradlew jacocoTestReport --stacktrace
