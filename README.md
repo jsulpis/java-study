@@ -12,7 +12,7 @@
 </p>
 
 <p>
-  <img class="repo-preview" src="https://raw.githubusercontent.com/jsulpis/java-study/docs-add-README/preview.png" alt="Screenshot image"/></a>
+  <img class="repo-preview" src="https://raw.githubusercontent.com/jsulpis/java-study/master/preview.png" alt="Screenshot image"/></a>
 </p>
 
 </div>
